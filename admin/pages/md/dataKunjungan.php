@@ -30,9 +30,6 @@ $hitung1=mysqli_num_rows($query);
       <h2 class="page-header">
         <i class="fa "></i> Informasi Data Kunjungan
       </h2>
-      <h6>
-        <i class="fa "></i> Jumlah Kunjungan : <?php echo $hitung1 ?>
-      </h6>
       <div class="box">
         <div class="box-header with-border">
           <h3 class="box-title">
@@ -44,7 +41,7 @@ $hitung1=mysqli_num_rows($query);
             <h6>Tanggal Akhir</h6> <input type="date" name="tanggal_akhir" id="tanggal_akhir" class="form-control">
             </div>
             <br>
-            <button class="btn btn-primary" name="cari" id="cari" type="submit" value="cari">
+            <button class="btn btn-primary" name="cari" id="cari" type="button" value="cari">
           Cari
             </button>
           </form>
@@ -52,10 +49,12 @@ $hitung1=mysqli_num_rows($query);
             </div>
         </div>
         <!-- /.box-header -->
-        
+<h6 style="text-align: right;">
+<i class="fa "></i> Jumlah Kunjungan : <?php echo $hitung1 ?>
+</h6>
         <div class="box-body" id="list">
           <table class="table table-bordered table-striped">
-            <tr>
+          <tr style="font-size: 12px">
               <th><span class="fa fa-th-list"></span> No</th>
               <th><span class="fa fa-check-square-o"></span> NIK</th>
               <th><span class="fa fa-user"></span> Nama Pasien</th>
@@ -74,7 +73,7 @@ $hitung1=mysqli_num_rows($query);
       while ($row=mysqli_fetch_object($query))
       {
        ?>
-  <tr>
+      <tr style="font-size: 12px">
    <td><?php echo $n ?></td>
    <td><?php echo "$row->NIK"?></td>
    <td><?php echo "$row->nama"?></td>
@@ -185,7 +184,7 @@ function editLayanan(id){
                 if(tanggal_awal != '' && tanggal_akhir != '')  
                 {  
                      $.ajax({  
-                          url:"pages/md/pencarianPasien.php?",  
+                          url:"pages/md/pencarianKunjungan.php",  
                           method:"POST",  
                           data:{tanggal_awal:tanggal_awal, tanggal_akhir:tanggal_akhir},  
                           success:function(data)  
@@ -201,16 +200,7 @@ function editLayanan(id){
            });  
       });
 
-  //     function cari() {
-  // var q = $('#cari').val();
-  // $.ajax({
-  // type: "GET",
-  // url: "pages/md/pencarianPasien.php?q="+q,
-  // success: function(data){
-  //     var $response = $(data);
-  //     $('#isi_tabel').html($response.filter('#isi_tabel').html());
-  //   }
-  // });  
+  
  </script>
   <script type="text/javascript">
   $(document).ready(function(){

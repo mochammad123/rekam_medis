@@ -1,60 +1,62 @@
 <?php
 include '../../../backend/koneksi.php';
 ?>
-<?php  
- //filter.php  
- $query = mysqli_query($koneksi,"SELECT tb_rekam_medis.tgl_rekam,tb_rekam_medis.jenis_kunjungan,tb_rekam_medis.periksa,tb_rekam_medis.diagnosa,tb_rekam_medis.tindakan,tb_pasien.NIK,tb_pasien.nama from tb_rekam_medis inner join tb_pasien on tb_rekam_medis.id_pasien=tb_pasien.id_pasien WHERE tgl_rekam BETWEEN tanggal AND '".$_POST["tanggal_akhir"]."'  
- ");
- while ($row=mysqli_fetch_object($query))
- // $query = mysqli_query($koneksi,"select * from tb_pasien where nama like '%".$_GET['q']."%' order by nama asc ");
- // while ($row=mysqli_fetch_object($query))
- // { 
- //   $query = "  
- //        SELECT * FROM tbl_order  
- //        WHERE order_date BETWEEN '".$_POST["from_date"]."' AND '".$_POST["to_date"]."'  
- //   ";  
-   $result = mysqli_query($connect, $query);  
-   $output .= '  
-   <table class="table table-bordered table-striped">
-       <tr>
-            <th><span class="fa fa-th-list"></span> No</th>
-            <th><span class="fa fa-check-square-o"></span> NIK</th>
-            <th><span class="fa fa-user"></span> Nama Pasien</th>
-            <th><span class="fa fa-calendar"></span> Tanggal</th>
-            <th><span class="fa fa-clock-o"></span> Jenis Kunjungan</th>
-            <th><span class="fa fa-stethoscope"></span> Periksa</th>
-            <th><span class="fa fa-heartbeat"></span> Diagnosa</th>
-            <th><span class="fa fa-user-md"></span> Tindakan</th>
-       </tr>  
-   ';  
-   if(mysqli_num_rows($result) > 0)  
-   {  
-        while($row = mysqli_fetch_array($result))  
-        {  
-             $output .= '  
-                  <tr>  
-                       <td>'. $row["NIK"] .'</td>  
-                       <td>'. $row["nama"] .'</td>  
-                       <td>'. $row["tgl_rekam"] .'</td>  
-                       <td>'. $row["jenis_kunjungan"] .'</td>  
-                       <td>'. $row["periksa"] .'</td>
-                       <td>'. $row["diagnosa"] .'</td>
-                       <td>'. $row["tindakan"] .'</td>  
-                  </tr>  
-             ';  
-        }  
-   }  
-   else  
-   {  
-        $output .= '  
-             <tr>  
-                  <td colspan="5">No Order Found</td>  
-             </tr>  
-        ';  
-   }  
-   $output .= '</table>';  
-   echo $output;  
- if(isset($_POST["tanggal_awal"], $_POST["tanggal_akhir"]))  
- {  
- }  
- ?>
+<?php 
+if(isset($_POST["tanggal_awal"], $_POST["tanggal_akhir"]))  
+{ 
+  $query = mysqli_query($koneksi,"SELECT tb_rekam_medis.tgl_rekam,tb_rekam_medis.jenis_kunjungan,tb_rekam_medis.periksa,tb_rekam_medis.diagnosa,tb_rekam_medis.tindakan,tb_pasien.NIK,tb_pasien.nama from tb_rekam_medis inner join tb_pasien on tb_rekam_medis.id_pasien=tb_pasien.id_pasien WHERE tgl_rekam BETWEEN '".$_POST["tanggal_awal"]."' AND '".$_POST["tanggal_akhir"]."'");  
+  $hitung1=mysqli_num_rows($query); 
+?>
+<h6>
+<i class="fa "></i> Jumlah Kunjungan : <?php echo $hitung1 ?>
+</h6>
+<div id="isi_tabel">
+  <table class="table table-bordered table-striped">
+    <thead>
+    <tr style="font-size: 12px">
+             <th><span class="fa fa-th-list"></span> No</th>
+             <th><span class="fa fa-check-square-o"></span> NIK</th>
+             <th><span class="fa fa-user"></span> Nama Pasien</th>
+             <th><span class="fa fa-calendar"></span> Tanggal</th>
+             <th><span class="fa fa-clock-o"></span> Jenis Kunjungan</th>
+             <th><span class="fa fa-stethoscope"></span> Periksa</th>
+             <th><span class="fa fa-heartbeat"></span> Diagnosa</th>
+             <th><span class="fa fa-user-md"></span> Tindakan</th>
+    </tr>
+  </thead>
+  <tbody id="isi_tabel">
+<?php
+  $n=1;
+if(mysqli_num_rows($query) > 0)  
+ { 
+  while ($row=mysqli_fetch_object($query))
+  {
+   ?>
+   <tr style="font-size: 12px">
+    <td> <?php echo $n ?> </td>
+    <td> <?php echo "$row->NIK" ?> </td>
+    <td><?php echo "$row->nama"?></td>
+    <td><?php echo "$row->tgl_rekam"?></td>
+    <td><?php echo "$row->jenis_kunjungan"?></td>
+    <td><?php echo "$row->periksa"?></td>
+    <td><?php echo "$row->diagnosa"?></td>
+    <td><?php echo "$row->tindakan"?></td>
+   </tr>
+   <?php
+   $n= $n+1;
+  }
+ }
+ else {
+   ?>
+   <tr style="text-align: center;">
+   <td colspan="8">Data tidak ditemukan!</td>
+   </tr>
+   <?php
+ }
+?>
+</tbody>
+</table>
+<?php
+}
+?>
+</div>

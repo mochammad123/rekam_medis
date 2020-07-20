@@ -88,11 +88,6 @@
         <i class="fa fa-medkit"></i> <span>Data Kunjungan</span>
       </a>
     </li>
-    <li>
-      <a href="?m=pencarianKunjungan">
-        <i class="fa fa-medkit"></i> <span>Data Kunjungan</span>
-      </a>
-    </li>
     <!-- <li>
       <a href="?m=rawat">
         <i class="fa fa-ambulance"></i> <span>Rawat</span>
