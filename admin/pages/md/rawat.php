@@ -234,7 +234,7 @@ include"../backend/koneksi.php";
             <input type="date" class="form-control" name="tgl_kunjungan" required="required">
           </div>
           <div class="form-group">
-              <label for="">Jenis Kunjungan</label>
+              <label>Jenis Kunjungan</label>
                 <select class="form-control" name="jenis_kunjungan">
                   <option value="Baru">Baru</option>
                   <option value="Lama">Lama</option>

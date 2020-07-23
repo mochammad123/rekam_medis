@@ -28,8 +28,7 @@ $query = mysqli_query($koneksi,"select * from tb_pendaftaran where id_rawat = '$
         $jenis_kunjungan = $row->jenis_kunjungan;
       }
 
-// $sql1 = "INSERT  INTO tb_rekam_medis (no_rm,id_pasien,tgl_rekam,jam,NIP,biaya,periksa) VALUES ('','$id_pasien','$tanggal','$jam','$NIP','$biaya_periksa','$periksa')";
-$sql1 = "INSERT  INTO tb_rekam_medis (no_rm,id_pasien,tgl_rekam,jenis_kunjungan,NIP) VALUES ('','$id_pasien','$tanggal','$jenis_kunjungan','$NIP')";
+$sql1 = "INSERT INTO tb_rekam_medis (no_rm,id_pasien,tgl_rekam,jenis_kunjungan,NIP) VALUES ('','$id_pasien','$tanggal','$jenis_kunjungan','$NIP')";
 $input = mysqli_query($koneksi,$sql1);
 
 if ($input) {

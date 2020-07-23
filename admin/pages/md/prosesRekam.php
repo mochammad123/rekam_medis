@@ -67,7 +67,7 @@ while ($row=mysqli_fetch_object($cekpoli)) {
          <td><?php echo "$row->tanggal"?></td>
          <td><?php echo "$row->jenis_kunjungan"?></td>
          <td><?php echo "$row->proses"?></td>
-<!--          <td><?php echo "Rp ".number_format($row->biaya,2,',','.');?></td> -->
+
          <td><span class="label label-success"><?php echo "$row->status"?></span></td>
          <td><span class="label label-warning"><?php echo "$row->keterangan"?></span></td>
          <td>
@@ -80,9 +80,7 @@ while ($row=mysqli_fetch_object($cekpoli)) {
              </button>
 
              <input type="hidden" name="id" value="<?php echo $row->id_rawat; ?>">
-<!--                    <button type="button" data-toggle="tooltip"data-placement="bottom" title="Ubah Layanan" class="btn btn-warning btn-flat btn-sm" onclick="editLayanan(<?php echo $row->id_rawat; ?>)">
-                     <i class="glyphicon glyphicon-edit"></i>
-                   </button> -->
+
 
              <button type="submit" class="btn btn-danger btn-flat btn-sm" name="hapus">
                <i class="glyphicon glyphicon-remove"></i>
@@ -158,17 +156,13 @@ while ($row=mysqli_fetch_object($query))
    <td><?php echo "$row->tanggal"?></td>
    <td><?php echo "$row->jenis_kunjungan"?></td>
    <td><?php echo "$row->proses"?></td>
-<!--    <td><?php echo "Rp ".number_format($row->biaya,2,',','.');?></td> -->
+
    <td><span class="label label-success"><?php echo "$row->status"?></span></td>
    <td><span class="label label-success"><?php echo "$row->keterangan"?></span></td>
    <td>
      <form class="" action="" method="post">
        <input type="hidden" name="id_rawat" value="<?php echo $row->id_rawat; ?>">
        <input type="hidden" name="id_pasien" value="<?php echo $row->id_pasien; ?>">
-
-       <!-- <button name="rekam" class="btn btn-default btn-flat btn-sm" type="submit" data-toggle="tooltip" data-placement="bottom" title="Proses">
-         <i class="glyphicon glyphicon-eye-open"></i>
-       </button> -->
 
        <button type="submit" class="btn btn-danger btn-flat btn-sm" name="hapus" data-toggle="tooltip" data-placement="bottom" title="Hapus">
          <i class="glyphicon glyphicon-remove"></i>
@@ -193,7 +187,7 @@ while ($row=mysqli_fetch_object($query))
   <script type="text/javascript">
     $('button').tooltip();
   </script>
-  <script type="text/javascript">
+  <!-- <script type="text/javascript">
 function editLayanan(id){
   $.ajax({
     type: "GET",
@@ -207,7 +201,7 @@ function editLayanan(id){
     }
   });
 }
-</script>
+</script> -->
   <script type="text/javascript">
 
   $(document).ready(function(){

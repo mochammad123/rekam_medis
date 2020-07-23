@@ -93,7 +93,7 @@ include"../backend/koneksi.php";
 
             $n=1;
             // $query = mysqli_query($koneksi,"select * from tb_pasien order by nama asc ");
-            $result = mysqli_query($koneksi,"select * from tb_pasien limit $offset, $total_records_per_page");
+            $result = mysqli_query($koneksi,"select * from tb_pasien ORDER BY nama ASC limit $offset, $total_records_per_page");
             while ($row=mysqli_fetch_object($result))
             {
              ?>
@@ -118,7 +118,7 @@ include"../backend/koneksi.php";
                <td>
                  <form class="" action="" method="post">
                    <input type="hidden" name="id" value="<?php echo $row->id_pasien; ?>">
-                   <a name="cetak" href="../backend/backend_cetakPasien.php?id=<?php echo $row->id_pasien; ?>" target="_blank" class="btn btn-default btn-flat btn-xs" style="size: 5px">
+                   <a name="cetak" href="../backend/backend_cetak.php?id=<?php echo $row->id_pasien; ?>" target="_blank" class="btn btn-default btn-flat btn-xs" style="size: 5px">
                      <i class="glyphicon glyphicon-print"></i>
                    </a>
                    <button type="button" class="btn btn-warning btn-flat btn-xs" onclick="editPasien(<?php echo $row->id_pasien; ?>)">

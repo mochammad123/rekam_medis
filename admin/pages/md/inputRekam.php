@@ -182,7 +182,7 @@ while ($row=mysqli_fetch_object($hasil)) {
 
       <?php
       $id_rawat = $_POST['id_rawat'];
-      $query = mysqli_query($koneksi,"SELECT no_rm,tgl_rekam,jenis_kunjungan,periksa,diagnosa,tindakan from tb_rekam_medis where id_pasien ='$id_pasien' order by tgl_rekam desc limit $offset, $total_records_per_page");
+      $query = mysqli_query($koneksi,"SELECT no_rm,tgl_rekam,jenis_kunjungan,periksa,diagnosa,tindakan from tb_rekam_medis where id_pasien ='$id_pasien' order by no_rm desc limit $offset, $total_records_per_page");
       while ($data=mysqli_fetch_object($query))
       {
        ?>
@@ -228,7 +228,7 @@ while ($row=mysqli_fetch_object($hasil)) {
 
         <?php
         // $query = mysqli_query($koneksi,"SELECT tgl_rekam,periksa,diagnosa,tindakan from tb_rekam_medis where id_pasien ='$id_pasien' and tgl_rekam = current_date()");
-        $query = mysqli_query($koneksi,"SELECT no_rm,tgl_rekam,jenis_kunjungan,periksa,diagnosa,tindakan from tb_rekam_medis where id_pasien ='$id_pasien'");
+        $query = mysqli_query($koneksi,"SELECT no_rm,tgl_rekam,jenis_kunjungan,periksa,diagnosa,tindakan from tb_rekam_medis where id_pasien ='$id_pasien' ORDER BY tgl_rekam DESC");
         while ($data=mysqli_fetch_object($query))
         {
          ?>

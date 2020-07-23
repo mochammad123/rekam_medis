@@ -6,7 +6,7 @@ $cekpoli=mysqli_query($koneksi,"SELECT jenis_poli from tb_dokter where username=
 while ($row=mysqli_fetch_object($cekpoli)) {
   $Poli=$row->jenis_poli;
 }
-$query = mysqli_query($koneksi,"SELECT tb_rekam_medis.tgl_rekam,tb_rekam_medis.jenis_kunjungan,tb_rekam_medis.periksa,tb_rekam_medis.diagnosa,tb_rekam_medis.tindakan,tb_pasien.NIK,tb_pasien.nama from tb_rekam_medis inner join tb_pasien on tb_rekam_medis.id_pasien=tb_pasien.id_pasien");
+$query = mysqli_query($koneksi,"SELECT tb_rekam_medis.tgl_rekam,tb_rekam_medis.jenis_kunjungan,tb_rekam_medis.periksa,tb_rekam_medis.diagnosa,tb_rekam_medis.tindakan,tb_pasien.NIK,tb_pasien.nama from tb_rekam_medis inner join tb_pasien on tb_rekam_medis.id_pasien=tb_pasien.id_pasien ORDER BY tb_rekam_medis.tgl_rekam ASC");
 $hitung1=mysqli_num_rows($query); 
  ?>
 <div class="content-wrapper">
@@ -49,10 +49,10 @@ $hitung1=mysqli_num_rows($query);
             </div>
         </div>
         <!-- /.box-header -->
-<h6 style="text-align: right;">
-<i class="fa "></i> Jumlah Kunjungan : <?php echo $hitung1 ?>
-</h6>
         <div class="box-body" id="list">
+        <h6 style="text-align: right;">
+          <i class="fa "></i> Jumlah Kunjungan : <?php echo $hitung1 ?>
+         </h6>
           <table class="table table-bordered table-striped">
           <tr style="font-size: 12px">
               <th><span class="fa fa-th-list"></span> No</th>

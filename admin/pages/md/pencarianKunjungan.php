@@ -4,10 +4,10 @@ include '../../../backend/koneksi.php';
 <?php 
 if(isset($_POST["tanggal_awal"], $_POST["tanggal_akhir"]))  
 { 
-  $query = mysqli_query($koneksi,"SELECT tb_rekam_medis.tgl_rekam,tb_rekam_medis.jenis_kunjungan,tb_rekam_medis.periksa,tb_rekam_medis.diagnosa,tb_rekam_medis.tindakan,tb_pasien.NIK,tb_pasien.nama from tb_rekam_medis inner join tb_pasien on tb_rekam_medis.id_pasien=tb_pasien.id_pasien WHERE tgl_rekam BETWEEN '".$_POST["tanggal_awal"]."' AND '".$_POST["tanggal_akhir"]."'");  
+  $query = mysqli_query($koneksi,"SELECT tb_rekam_medis.tgl_rekam,tb_rekam_medis.jenis_kunjungan,tb_rekam_medis.periksa,tb_rekam_medis.diagnosa,tb_rekam_medis.tindakan,tb_pasien.NIK,tb_pasien.nama from tb_rekam_medis inner join tb_pasien on tb_rekam_medis.id_pasien=tb_pasien.id_pasien WHERE tgl_rekam BETWEEN '".$_POST["tanggal_awal"]."' AND '".$_POST["tanggal_akhir"]."' ORDER BY tb_rekam_medis.tgl_rekam ASC");  
   $hitung1=mysqli_num_rows($query); 
 ?>
-<h6>
+<h6 style="text-align: right;">
 <i class="fa "></i> Jumlah Kunjungan : <?php echo $hitung1 ?>
 </h6>
 <div id="isi_tabel">

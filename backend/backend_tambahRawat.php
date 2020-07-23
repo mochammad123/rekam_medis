@@ -15,13 +15,13 @@ $pelayanan = $_POST['poli'];
 // $tanggal = date("Y-m-d");
 // $jam = date("H:i:s");
 $tanggal = $_POST['tgl_kunjungan'];
-$jenis = $_POST['jenis_kunjungan'];
+$jenis_kunjungan = $_POST['jenis_kunjungan'];
 $proses = "$pelayanan";
 // $biaya = "10000";
 $status = "Aktif";
 $keterangan = "Menunggu...";
 
-$sql = "INSERT INTO tb_pendaftaran VALUES ('','$nama','$tanggal','$jenis','$proses','$status','$keterangan','$id','$id_dua','$no_cm')";
+$sql = "INSERT INTO tb_pendaftaran VALUES ('','$nama','$tanggal','$jenis_kunjungan','$proses','$status','$keterangan','$id','$id_dua','$no_cm')";
 // die($sql);
 $simpan = mysqli_query($koneksi,$sql);
 

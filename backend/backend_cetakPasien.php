@@ -14,30 +14,49 @@ function rupiahkan($value)
   <head>
     <title>Data Pasien THT</title>
 </head>
-  <body>
-    <div class="">
-  <table border="0" align="center">
+<body>
+<table border="0" align="center">
     <tr>
-<!--       <td>
-        <img style="padding-right:2em; margin-top:-20px;"src='../images/logo-puskesmas.png'width='60'height='60'/>
-      </td> -->
-      <td style="line-height : 0px">
-        <h3 align="center">DATA PASIEN</h3>
+      <td style="line-height : 0px; border: 0px solid #3c3c3c;">
+        <h3 align="center">DATA REKAM MEDIS</h3>
         <h4 align="center">Spesialis THT</h4>
         <h4 align="center">Dr. Endang Suherlan, Sp.T.H.T.K.L., M.Kes</h4>
-<!--         <h5 align="center">Jl. AKBP AGUSTJIK No. 960 Kecamatan Ilir Barat II (Telp: 021567834)</h5> -->
+      </td>
+    </tr>
+    <tr>
+      <td style="line-height : 0px; border: 1px solid #b8b8b8;">
       </td>
     </tr>
   </table>
-</div>
-<hr style="width:80%;">
-<hr style="width:80%;">
-<h4 align="center"><b>Data Pasien</b></h4>
-<div>
-<table border="1" align="center" style="width:80%;">
-  <thead>
-    <tr>
-      <th><span class="fa fa-th-list"></span> No</th>
+ <style type="text/css">
+ body{
+  font-family: sans-serif;
+ }
+ table{
+  margin: 20px auto;
+  border-collapse: collapse;
+ }
+ table th,
+ table td{
+  border: 1px solid #b8b8b8;
+  padding: 3px 8px;
+
+ }
+ a{
+  background: blue;
+  color: #fff;
+  padding: 8px 10px;
+  text-decoration: none;
+  border-radius: 2px;
+ }
+
+    .tengah{
+        text-align: center;
+    }
+ </style>
+ <table>
+  <tr>
+  <th><span class="fa fa-th-list"></span> No</th>
       <th><span class="fa fa-bars"></span> NIK</th>
       <th><span class="fa fa-bars"></span> Nama</th>
       <th><span class="fa fa-bars"></span> Tempat Tanggal Lahir</th>
@@ -45,21 +64,16 @@ function rupiahkan($value)
       <th><span class="fa fa-bars"></span> Jenis Kelamin</th>
       <th><span class="fa fa-bars"></span> Pekerjaan</th>
       <th><span class="fa fa-bars"></span> Alamat</th>
-      <th><span class="fa fa-bars"></span> Kontak</th>            
-
-<!--       <th><span class="fa fa-usd"></span> Harga</th>
-      <th><span class="fa fa-cubes"></span> Stok</th> -->
-    </tr>
-  </thead>
-  <tbody>
+      <th><span class="fa fa-bars"></span> Kontak</th> 
+  </tr>
+  <?php 
+  // koneksi database
+  $n=1;
+  $query = mysqli_query($koneksi,"select * from tb_pasien");
+  while ($row=mysqli_fetch_object($query))
+  {
+    ?>
     <?php
-    $n=1;
-    $query = mysqli_query($koneksi,"select * from tb_pasien");
-    while ($row=mysqli_fetch_object($query))
-    {
-      ?>
-
-          <?php
       // cari umur
       $tgl_lahir =date_format(date_create($row->tgl_lahir), 'Y');
       $sekarang = date('Y');
@@ -75,33 +89,13 @@ function rupiahkan($value)
         <td><?php echo "$row->pekerjaan"?></td>
         <td><?php echo "$row->alamat"?></td>
         <td><?php echo "$row->kontak"?></td>
-<!--         <td id="harga_obat_tampil"><?php echo rupiahkan($row->harga_obat)?></td>
-        <td><?php echo "$row->stok_obat"?></td> -->
-      </tr>
-      <?php
-      $n= $n+1;
-    }
-    ?>
-  </tbody>
-</table>
-<hr style="width:80%;">
-<table border="0" style="width:80%;" align="center" >
-  <tr>
-    <td align="right">
-      <?php $bulan= array("","Januari","Febuari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
-      ?>
-      Makrayu, <?php echo date("j")." ".$bulan[date("n")]." ".date("Y"); ?>
-    </td>
   </tr>
-  <tr>
-    <td style="padding-top:45px; padding-right:55px;" align="right">
-      <u><?php echo $username ?></u>
-    </td>
-  </tr>
-</table>
-  </div>
+  <?php 
+    $n= $n+1;
+  }
+  ?>
+    <script>
+  window.print();
+ </script>
 </body>
 </html>
-<script type="text/javascript">
-window.print();
-</script>

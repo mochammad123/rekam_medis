@@ -24,10 +24,15 @@ include"../backend/koneksi.php";
 $id_pasien = $_GET['id'];
 $id_rawat = $_GET['id_rawat'];
 // $sql1 = "SELECT no_rm FROM tb_rekam_medis where id_pasien='$id_pasien' and tgl_rekam = current_date()";
-$sql1 = "SELECT no_rm FROM tb_rekam_medis where id_pasien='$id_pasien'";
+$sql1 = "SELECT * FROM tb_rekam_medis where id_pasien='$id_pasien'";
 $cariNo = mysqli_query($koneksi,$sql1);
-while ($row=mysqli_fetch_object($cariNo)) {
-  $no_rm = $row->no_rm;
+while ($row1=mysqli_fetch_object($cariNo)) {
+  $no_rm = $row1->no_rm;
+}
+$sql2 = "SELECT * FROM tb_pasien where id_pasien='$id_pasien'";
+$cariNo2 = mysqli_query($koneksi,$sql2);
+while ($row2=mysqli_fetch_object($cariNo2)) {
+  $id_pasie = $row2->id_pasien;
 }
  ?>
  <?php
@@ -58,8 +63,13 @@ while ($row=mysqli_fetch_object($cariNo)) {
       </button> -->
       <form class="" action="" method="post">
         <input type="hidden" name="id" value="<?php echo $id_pasien ?>">
+        <input type="hidden" name="id" value="<?php echo $id_pasie ?>">
         <input type="hidden" name="no_rm" value="<?php echo $no_rm ?>">
         <input type="hidden" name="no_cm" id="no_cm" value="<?php echo $no_cm ?>">
+        <a name="cetak" href="../backend/backend_cetakEditRekam.php?id=<?php echo $id_pasie; ?>" target="_blank" class="btn btn-default">
+        <i class="glyphicon glyphicon-print"></i>
+        Cetak
+        </a>
       </form>
     </h3>
   </div>
@@ -71,6 +81,14 @@ $sql= "SELECT * from tb_pasien where id_pasien = '$id_pasien'";
 $hasil = mysqli_query($koneksi,$sql);
 while ($row=mysqli_fetch_object($hasil)) {
 ?>
+      <form class="" action="" method="post">
+        <input type="hidden" name="id" value="<?php echo $id_pasien ?>">
+        <!-- <a name="cetak" href="../backend/backend_cetakEditRekam.php?id=<?php echo $row->id_pasien; ?>" target="_blank" class="btn btn-default">
+        <i class="glyphicon glyphicon-print"></i>
+        Cetak
+        </a> -->
+      </form>
+
   <div class="row">
     <div class="col-md-6">
       <table style="font-size:16px">
@@ -229,212 +247,6 @@ while ($row=mysqli_fetch_object($hasil)) {
 </div>
 
 <!-- form periksa -->
-<!-- <div class="form-group" id="periksa" style="display:none">
-<form class="" action="" method="post">
-  <table>
-    <tr>
-      <td>
-        <h5><b>Uraian Periksa &emsp;&emsp;:</b></h5>
-      </td>
-      <td>
-        <textarea name="periksa" rows="6" cols="30" class="form-control" autofocus="autofocus"></textarea>
-      </td>
-    </tr>
-    <tr>
-      <td><br></td>
-    </tr>
-    <tr>
-      <td>
-        <h5><b>Tambahan Biaya &emsp;:</b></h5>
-      </td>
-      <td>
-        <div class="input-group">
-        <span class="input-group-addon">Rp</span>
-        <input type="text" name="biaya_periksa" value="" class="form-control" onkeyup="formatangka(this);">
-      </div>
-      </td>
-    </tr>
-    <tr>
-      <td><br></td>
-    </tr>
-    <tr>
-      <td colspan="2" align="center">
-        <input type="hidden" name="id_pasien" value="<?php echo $id_pasien ?>">
-        <button type="submit" class="btn btn-success" name="submit_periksa">Submit</button>
-        <button type="reset" class="btn btn-warning">Hapus</button>
-      </td>
-      <td></td>
-    </tr>
-  </table>
-</form>
-</div> -->
-<!-- akhir form periksa -->
-
-<!-- form diagnosa -->
-<!-- <div class="form-group" id="diagnosa" style="display:none">
-<form class="" action="" method="post">
-  <table>
-    <tr>
-      <td>
-        <h5><b>Uraian Diagnosa &emsp;&emsp;:</b></h5>
-      </td>
-      <td>
-        <textarea name="diagnosa" rows="6" cols="30" class="form-control"  autofocus="autofocus"></textarea>
-      </td>
-    </tr>
-    <tr>
-      <td><br></td>
-    </tr> -->
-<!--     <tr>
-      <td>
-        <h5><b>Tambahan Biaya &emsp;&emsp;:</b></h5>
-      </td>
-      <td>
-        <div class="input-group">
-        <span class="input-group-addon">Rp</span>
-        <input type="text" name="biaya_diagnosa" value="" class="form-control" onkeyup="formatangka(this);">
-      </div>
-      </td>
-    </tr> -->
-<!--     <tr>
-      <td><br></td>
-    </tr>
-    <tr>
-      <td colspan="2" align="center">
-        <input type="hidden" name="id_pasien" value="<?php echo $id_pasien ?>">
-        <button type="submit" class="btn btn-success" name="submit_diagnosa">Submit</button>
-        <button type="reset" class="btn btn-warning">Hapus</button>
-      </td>
-      <td></td>
-    </tr>
-  </table>
-</form>
-</div> -->
-<!-- akhir form diagnosa -->
-<!-- form tindakan -->
-<!-- <div class="form-group" id="tindakan" style="display:none">
-<form class="" action="" method="post">
-  <table>
-    <tr>
-      <td>
-        <h5><b>Uraian Tindakan &emsp;&emsp;:</b></h5>
-      </td>
-      <td>
-        <textarea name="tindakan" rows="6" cols="30" class="form-control"  autofocus="autofocus"></textarea>
-      </td>
-    </tr>
-    <tr>
-      <td><br></td>
-    </tr> -->
-    <!-- <tr>
-      <td>
-        <h5><b>Tambahan Biaya &emsp;&emsp;:</b></h5>
-      </td>
-      <td>
-        <div class="input-group">
-        <span class="input-group-addon">Rp</span>
-        <input type="text" name="biaya_tindakan" value="" class="form-control" onkeyup="formatangka(this);">
-      </div>
-      </td>
-    </tr> -->
-<!--     <tr>
-      <td><br></td>
-    </tr>
-    <tr>
-      <td colspan="2" align="center">
-        <input type="hidden" name="id_pasien" value="<?php echo $id_pasien ?>">
-        <button type="submit" class="btn btn-success" name="submit_tindakan">Submit</button>
-        <button type="reset" class="btn btn-warning">Hapus</button>
-      </td>
-      <td></td>
-    </tr>
-  </table>
-</form>
-</div> -->
-<!-- akhir form tindakan -->
-<!-- /.box-header -->
-<!-- <div class="box-body" id="resep_obat" style="display:none">
-  <button class="btn btn-default" data-toggle="modal" data-target="#tabel_obat" data-toggle="tooltip" title="Tambah Obat" data-placement="right">
-    <i class="fa fa-cart-plus"></i>
-  </button><br><br>
-<table class="table table-bordered table-striped">
-  <tr>
-    <th><span class="fa fa-th-list"></span> No</th>
-    <th><span class="fa fa-medkit"></span> Nama Obat</th>
-    <th><span class="fa fa-usd"></span> Harga</th>
-    <th><span class="fa fa-cubes"></span> Jumlah Tersedia</th>
-    <th><span class="fa fa-cart-arrow-down"></span> Jumlah Ambil</th>
-    <th><span class="fa fa-usd"></span> Biaya</th>
-    <th><span class="fa fa-cogs"></span> Opsi</th>
-  </tr>
-
-<?php
-  $n=1;
-  $sql = mysqli_query($koneksi,"SELECT nama_obat,harga_obat,stok_obat,jumlah,total from tb_obat inner join tb_resep_obat on tb_resep_obat.id_obat=tb_obat.id_obat where tb_resep_obat.no_rm = '$no_rm'");
-  while ($row=mysqli_fetch_object($sql))
-  {
-   ?>
-   <tr>
-     <td> <?php echo $n ?> </td>
-     <td><?php echo "$row->nama_obat"?></td>
-     <td><?php echo "Rp ".number_format($row->harga_obat,2,',','.');?></td>
-     <td><?php echo "$row->stok_obat"?></td>
-     <td><?php echo "$row->jumlah"?></td>
-     <td><?php echo "Rp ".number_format($row->total,2,',','.');?></td>
-     <td>
-       <form class="" action="" method="post">
-         <input type="hidden" name="id_pasien" value="<?php echo $id_pasien ?>">
-
-         <button type="submit" class="btn btn-danger btn-flat btn-sm" name="hapus">
-           <i class="glyphicon glyphicon-remove"></i>
-         </button>
-       </form>
-    </td>
-   </tr>
-   <?php
-   $n= $n+1;
-}
-?>
-  </table>
-  </div> -->
-  <!-- akhir body -->
-  <!-- modal tabel obat -->
-<!--   <div class="modal fade" id="tabel_obat" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title" id="">Daftar obat</h4>
-        </div>
-        <form class="" action="" method="post">
-          <input type="hidden" name="id_pasien" value="<?php echo $id_pasien ?>">
-        <div class="modal-body">
-          <div class="form-group">
-            <label for="">Nama obat</label>
-            <select class="form-control" name="nama_obat" id="nama_obat">
-              <option value="null">- Pilih obat -</option>
-              <?php
-              $tampil=mysqli_query($koneksi,"select * from tb_obat");
-              while($row=mysqli_fetch_array($tampil)){
-                echo "<option value='$row[id_obat]'>$row[nama_obat]</option>";
-              }
-               ?>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="">Jumlah</label>
-            <input type="number" name="jumlah_obat" value="" class="form-control">
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-          <button type="submit" name="tambah_resep" class="btn btn-primary">Submit</button>
-        </div>
-      </form>
-      </div>
-    </div>
-  </div> -->
-  <!-- akhir modal -->
 </div>
 </section>
 
