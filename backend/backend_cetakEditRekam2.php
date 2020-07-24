@@ -4,6 +4,7 @@ include "backend_autentifikasi.php";
 // $id = $_GET['id_login'];
 $_SESSION['username'] = $username;
 $id = $_GET['id'];
+$id1 = $_GET['no_rm'];
 function rupiahkan($value)
 {
   $nilai = "Rp ".number_format($value,2,',','.');
@@ -111,7 +112,7 @@ $hasil = mysqli_fetch_assoc($run);
   <?php 
   // koneksi database
   $n=1;
-  $query = mysqli_query($koneksi,"SELECT no_rm,id_pasien,tgl_rekam,jenis_kunjungan,periksa,diagnosa,tindakan from tb_rekam_medis where id_pasien ='$id' order by tgl_rekam asc");
+  $query = mysqli_query($koneksi,"SELECT no_rm,id_pasien,tgl_rekam,jenis_kunjungan,periksa,diagnosa,tindakan from tb_rekam_medis where no_rm =$id1");
 //   $query = mysqli_query($koneksi,"select * from tb_pasien");
   while ($row=mysqli_fetch_object($query))
   {

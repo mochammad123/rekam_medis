@@ -36,7 +36,7 @@ if (isset($_POST["hapus"])) {
           closeOnConfirm: false
         },
         function(){
-         window.location="?m=dataObat";
+         window.location="?m=dataPasien";
         });
       } else {
         console.log("confirm false");

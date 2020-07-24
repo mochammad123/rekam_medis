@@ -23,6 +23,7 @@ include"../backend/koneksi.php";
 <?php
 $id_pasien = $_GET['id'];
 $id_rawat = $_GET['id_rawat'];
+$no_rm = $_GET['no_rm'];
 // $sql1 = "SELECT no_rm FROM tb_rekam_medis where id_pasien='$id_pasien' and tgl_rekam = current_date()";
 $sql1 = "SELECT * FROM tb_rekam_medis where id_pasien='$id_pasien'";
 $cariNo = mysqli_query($koneksi,$sql1);
@@ -174,7 +175,7 @@ while ($row=mysqli_fetch_object($hasil)) {
         <th><span class="fa fa-clock-o"></span> Jenis Kunjungan</th>
         <th><span class="fa fa-stethoscope"></span> Periksa</th>
         <th><span class="fa fa-heartbeat"></span> Diagnosa</th>
-        <th><span class="fa fa-user-md"></span> Tindakan</th>
+        <th><span class="fa fa-user-md"></span> Obat</th>
         <th><span class="fa fa-user-md"></span> Opsi</th>
       </tr>
 
@@ -196,14 +197,14 @@ while ($row=mysqli_fetch_object($hasil)) {
          <td><?php echo "$data->tindakan"?></td>
          <td>
                  <form class="" action="" method="post">
-                   <a name="cetak" href="../backend/backend_cetak.php?id=<?php echo $data->id_pasien; ?>" target="_blank" class="btn btn-default btn-flat btn-xs" style="size: 5px">
+                   <input type="hidden" name="id_pasien" value="<?php echo $data->id_pasien; ?>">
+                   <input type="hidden" name="no_rm" value="<?php echo $data->no_rm; ?>">
+                   <a name="cetak" href="../backend/backend_cetakEditRekam2.php?id=<?php echo $data->id_pasien; ?>&no_rm=<?php echo $data->no_rm; ?>" target="_blank" class="btn btn-default btn-flat btn-xs" style="size: 5px">
                      <i class="glyphicon glyphicon-print"></i>
                    </a>
                    <button type="button" class="btn btn-warning btn-flat btn-xs" onclick="editRekam(<?php echo $data->no_rm; ?>)">
                      <i class="glyphicon glyphicon-edit"></i>
                    </button>
-                   <input type="hidden" name="id_pasien" value="<?php echo $data->id_pasien; ?>">
-                   <input type="hidden" name="no_rm" value="<?php echo $data->no_rm; ?>">
                    <button type="submit" class="btn btn-danger btn-flat btn-xs" name="hapus">
                      <i class="glyphicon glyphicon-remove"></i>
                    </button>
@@ -224,7 +225,7 @@ while ($row=mysqli_fetch_object($hasil)) {
           <th><span class="fa fa-clock-o"></span> Jenis Kunjungan</th>
           <th><span class="fa fa-stethoscope"></span> Periksa</th>
           <th><span class="fa fa-heartbeat"></span> Diagnosa</th>
-          <th><span class="fa fa-user-md"></span> Tindakan</th>
+          <th><span class="fa fa-user-md"></span> Obat</th>
         </tr>
 
         <?php
@@ -282,7 +283,7 @@ while ($row=mysqli_fetch_object($hasil)) {
                   <textarea name="diagnosa" required="required" rows="3" cols="40" class="form-control" id="diagnosa"></textarea>
                 </div>
                 <div class="form-group">
-                  <label for="">Tindakan</label>
+                  <label for="">Obat</label>
                   <textarea name="tindakan" required="required" rows="3" cols="40" class="form-control" id="tindakan"></textarea>
                 </div>  
           </div>

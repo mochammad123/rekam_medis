@@ -154,7 +154,7 @@ while ($row=mysqli_fetch_object($hasil)) {
         <th><span class="fa fa-clock-o"></span> Jenis Kunjungan</th>
         <th><span class="fa fa-stethoscope"></span> Periksa</th>
         <th><span class="fa fa-heartbeat"></span> Diagnosa</th>
-        <th><span class="fa fa-user-md"></span> Tindakan</th>
+        <th><span class="fa fa-user-md"></span> Obat</th>
         <th><span class="fa fa-user-md"></span> Opsi</th>
       </tr>
 
@@ -182,7 +182,7 @@ while ($row=mysqli_fetch_object($hasil)) {
 
       <?php
       $id_rawat = $_POST['id_rawat'];
-      $query = mysqli_query($koneksi,"SELECT no_rm,tgl_rekam,jenis_kunjungan,periksa,diagnosa,tindakan from tb_rekam_medis where id_pasien ='$id_pasien' order by no_rm desc limit $offset, $total_records_per_page");
+      $query = mysqli_query($koneksi,"SELECT id_pasien,no_rm,tgl_rekam,jenis_kunjungan,periksa,diagnosa,tindakan from tb_rekam_medis where id_pasien ='$id_pasien' order by no_rm desc limit $offset, $total_records_per_page");
       while ($data=mysqli_fetch_object($query))
       {
        ?>
@@ -197,7 +197,7 @@ while ($row=mysqli_fetch_object($hasil)) {
          <td>
                  <form class="" action="" method="post">
                    <input type="hidden" name="id" value="<?php echo $row->id_pasien; ?>">
-                   <a name="cetak" href="../backend/backend_cetak.php?id=<?php echo $data->id_pasien; ?>" target="_blank" class="btn btn-default btn-flat btn-xs" style="size: 5px">
+                   <a name="cetak" href="../backend/backend_cetakEditRekam2.php?id=<?php echo $data->id_pasien; ?>&no_rm=<?php echo $data->no_rm; ?>" target="_blank" class="btn btn-default btn-flat btn-xs" style="size: 5px">
                      <i class="glyphicon glyphicon-print"></i>
                    </a>
                    <button type="button" class="btn btn-warning btn-flat btn-xs" onclick="editRekam(<?php echo $data->no_rm; ?>)">
@@ -223,7 +223,7 @@ while ($row=mysqli_fetch_object($hasil)) {
           <th><span class="fa fa-clock-o"></span> Jenis Kunjungan</th>
           <th><span class="fa fa-stethoscope"></span> Periksa</th>
           <th><span class="fa fa-heartbeat"></span> Diagnosa</th>
-          <th><span class="fa fa-user-md"></span> Tindakan</th>
+          <th><span class="fa fa-user-md"></span> Obat</th>
         </tr>
 
         <?php
@@ -487,7 +487,7 @@ while ($row=mysqli_fetch_object($hasil)) {
                   <textarea name="diagnosa" required="required" rows="3" cols="40" class="form-control" id="diagnosa"></textarea>
                 </div>
                 <div class="form-group">
-                  <label for="">Tindakan</label>
+                  <label for="">Obat</label>
                   <textarea name="tindakan" required="required" rows="3" cols="40" class="form-control" id="tindakan"></textarea>
                 </div>  
           </div>

@@ -35,9 +35,14 @@ include"../backend/koneksi.php";
         </h2>
         <div class="box">
           <div class="box-header with-border">
+          <div class="box-tools">
+              <div class="input-group input-group-sm" style="width: 180px;">
+                <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                <input type="text" id="cari" placeholder="Pencarian..." class="form-control pull-right" onkeyup="cari()">
+              </div>
           </div>
           <!-- /.box-header -->
-          <div class="box-body">
+          <div class="box-body" id="isi_tabel">
             <div class="inner">
             <table class="table table-bordered table-striped">
               <tr style="font-size: 12px">
@@ -233,6 +238,32 @@ include"../backend/koneksi.php";
       });
     }
 </script>
+<script type="text/javascript">
+function cari() {
+  var q = $('#cari').val();
+  $.ajax({
+  type: "GET",
+  url: "pages/md/pencarianRekamMedis.php?q="+q,
+  success: function(data){
+      var $response = $(data);
+      $('#isi_tabel').html($response.filter('#isi_tabel').html());
+    }
+  });
+}
+</script>
+<script>
+  $(function () {
+    $("#example1").DataTable();
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false
+    });
+  });
+  </script>
 <!-- <script type="text/javascript">
   function pindah(url)
   {

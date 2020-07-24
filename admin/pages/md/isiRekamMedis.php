@@ -9,7 +9,7 @@ $sql1= mysqli_query($koneksi,"SELECT tb_rekam_medis.tgl_rekam,tb_rekam_medis.jen
 $hitung1=mysqli_num_rows($sql1);
 $sql2= mysqli_query($koneksi,"SELECT tb_rekam_medis.tgl_rekam,tb_rekam_medis.jenis_kunjungan,tb_rekam_medis.periksa,tb_rekam_medis.diagnosa,tb_rekam_medis.tindakan,tb_dokter.nama from tb_rekam_medis inner join tb_dokter on tb_rekam_medis.NIP=tb_dokter.NIP where id_pasien='".$_GET['id_pasien']."' and jenis_kunjungan='lama'");
 $hitung2=mysqli_num_rows($sql2);
-$sql= mysqli_query($koneksi,"SELECT tb_rekam_medis.tgl_rekam,tb_rekam_medis.jenis_kunjungan,tb_rekam_medis.periksa,tb_rekam_medis.diagnosa,tb_rekam_medis.tindakan,tb_dokter.nama from tb_rekam_medis inner join tb_dokter on tb_rekam_medis.NIP=tb_dokter.NIP where id_pasien='".$_GET['id_pasien']."'");
+$sql= mysqli_query($koneksi,"SELECT tb_rekam_medis.tgl_rekam,tb_rekam_medis.jenis_kunjungan,tb_rekam_medis.periksa,tb_rekam_medis.diagnosa,tb_rekam_medis.tindakan,tb_dokter.nama from tb_rekam_medis inner join tb_dokter on tb_rekam_medis.NIP=tb_dokter.NIP where id_pasien='".$_GET['id_pasien']."' ORDER BY  tb_rekam_medis.tgl_rekam ASC");
 $hitung=mysqli_num_rows($sql);
  ?>
  <div id="isi">
@@ -36,7 +36,7 @@ $hitung=mysqli_num_rows($sql);
        <th>Jenis Kunjungan</th>
        <th>Periksa</th>
        <th>Diagnosa</th>
-       <th>Tindakan</th>
+       <th>Obat</th>
      </tr>
      <?php
      $n=1;

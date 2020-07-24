@@ -67,8 +67,8 @@ $hitung10=mysqli_num_rows($sql10);
       </div>
     </div>
 
-    <div class="col-lg-3 col-xs-6">
-      <!-- small box -->
+    <!-- <div class="col-lg-3 col-xs-6">
+      small box
       <div class="small-box bg-aqua">
         <div class="inner">
           <h3><?php echo $hitung; ?></h3>
@@ -80,7 +80,7 @@ $hitung10=mysqli_num_rows($sql10);
         </div>
         <a href="?m=rawat" class="small-box-footer">Lihat data obat <i class="fa fa-arrow-circle-right"></i></a>
       </div>
-    </div>
+    </div> -->
 
 <!--     <div class="col-lg-3 col-xs-6"> -->
       <!-- small box -->

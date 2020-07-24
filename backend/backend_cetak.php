@@ -47,7 +47,7 @@ $hasil = mysqli_fetch_assoc($run);
   $sekarang = date('Y');
   $usia = $sekarang - $tgl_lahir;
   ?>
-<table>
+<table style="font-size: 12px">
   <tr>
     <td style="border: 0px solid #3c3c3c; line-height : 40px; align: left;">NIK</td>
     <td style="border: 0px solid #3c3c3c; line-height : 40px; align: left;">: <?php echo $hasil['NIK']; ?></td>

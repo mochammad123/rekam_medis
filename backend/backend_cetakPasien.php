@@ -55,7 +55,7 @@ function rupiahkan($value)
     }
  </style>
  <table>
-  <tr>
+  <tr style="font-size: 12px">
   <th><span class="fa fa-th-list"></span> No</th>
       <th><span class="fa fa-bars"></span> NIK</th>
       <th><span class="fa fa-bars"></span> Nama</th>
@@ -79,7 +79,7 @@ function rupiahkan($value)
       $sekarang = date('Y');
       $usia = $sekarang - $tgl_lahir;
         ?>  
-      <tr>
+      <tr style="font-size: 12px">
         <td> <?php echo $n ?> </td>
         <td><?php echo "$row->NIK"?></td>
         <td><?php echo "$row->nama"?></td>

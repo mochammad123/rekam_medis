@@ -4,11 +4,20 @@ include '../../../backend/koneksi.php';
 <?php 
 if(isset($_POST["tanggal_awal"], $_POST["tanggal_akhir"]))  
 { 
+  $tanggal_awal = $_POST["tanggal_awal"];
+  $tanggal_akhir = $_POST["tanggal_akhir"];
+  $ww = $tanggal_awal&&$tanggal_akhir;
   $query = mysqli_query($koneksi,"SELECT tb_rekam_medis.tgl_rekam,tb_rekam_medis.jenis_kunjungan,tb_rekam_medis.periksa,tb_rekam_medis.diagnosa,tb_rekam_medis.tindakan,tb_pasien.NIK,tb_pasien.nama from tb_rekam_medis inner join tb_pasien on tb_rekam_medis.id_pasien=tb_pasien.id_pasien WHERE tgl_rekam BETWEEN '".$_POST["tanggal_awal"]."' AND '".$_POST["tanggal_akhir"]."' ORDER BY tb_rekam_medis.tgl_rekam ASC");  
   $hitung1=mysqli_num_rows($query); 
 ?>
 <h6 style="text-align: right;">
+<form class="" action="" method="post">
+<a name="cetak" href="../backend/backend_cetakKunjungan.php?tgl_awal=<?php echo $tanggal_awal ?>&tgl_akhir=<?php echo $tanggal_akhir ?>" target="_blank" class="btn btn-default btn-flat btn-xs" style="size: 5px">
+<i class="glyphicon glyphicon-print"></i>
+cetak
+</a>
 <i class="fa "></i> Jumlah Kunjungan : <?php echo $hitung1 ?>
+</form>
 </h6>
 <div id="isi_tabel">
   <table class="table table-bordered table-striped">
@@ -44,6 +53,11 @@ if(mysqli_num_rows($query) > 0)
    </tr>
    <?php
    $n= $n+1;
+   ?>
+   <form class="" action="" method="post">
+                   <input type="hidden" name="id_pasien" value="<?php echo $data->id_pasien; ?>">
+                   <input type="hidden" name="no_rm" value="<?php echo $data->no_rm; ?>">
+  <?php
   }
  }
  else {

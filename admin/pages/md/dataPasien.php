@@ -91,9 +91,10 @@ include"../backend/koneksi.php";
     $total_no_of_pages = ceil($total_records / $total_records_per_page);
   $second_last = $total_no_of_pages - 1; // total page minus 1
 
-            $n=1;
+            
             // $query = mysqli_query($koneksi,"select * from tb_pasien order by nama asc ");
             $result = mysqli_query($koneksi,"select * from tb_pasien ORDER BY nama ASC limit $offset, $total_records_per_page");
+            $n=1;
             while ($row=mysqli_fetch_object($result))
             {
              ?>
