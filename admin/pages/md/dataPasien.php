@@ -39,6 +39,10 @@ include"../backend/koneksi.php";
               <button class="btn btn-primary" data-toggle="modal" data-target="#piu">
                 Pasien Baru
               </button>
+              <a name="cetak" href="../backend/backend_exportPasien.php" target="_blank" class="btn btn-primary">
+                <i class="fa fa-download"></i>
+                Download
+              </a>
 
               <a name="cetak" href="../backend/backend_cetakPasien.php" target="_blank" class="btn btn-default">
                 <i class="fa fa-print"></i>

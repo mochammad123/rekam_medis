@@ -67,6 +67,11 @@ while ($row2=mysqli_fetch_object($cariNo2)) {
         <input type="hidden" name="id" value="<?php echo $id_pasie ?>">
         <input type="hidden" name="no_rm" value="<?php echo $no_rm ?>">
         <input type="hidden" name="no_cm" id="no_cm" value="<?php echo $no_cm ?>">
+        <a name="cetak" href="../backend/backend_exportEditRekam.php?id=<?php echo $id_pasie; ?>" target="_blank" class="btn btn-primary">
+        <i class="glyphicon glyphicon-download"></i>
+        Download
+        </a>
+
         <a name="cetak" href="../backend/backend_cetakEditRekam.php?id=<?php echo $id_pasie; ?>" target="_blank" class="btn btn-default">
         <i class="glyphicon glyphicon-print"></i>
         Cetak
