@@ -66,10 +66,29 @@ $hitung1=mysqli_num_rows($query);
             </tr>
 
       <?php
+            if (isset($_GET['page_no']) && $_GET['page_no']!="") {
+              $page_no = $_GET['page_no'];
+              } else {
+                $page_no = 1;
+                    }
+            
+              $total_records_per_page = 10;
+              $offset = ($page_no-1) * $total_records_per_page;
+              $previous_page = $page_no - 1;
+              $next_page = $page_no + 1;
+              $adjacents = "2";
+            
+              $result_count = mysqli_query($koneksi,"SELECT COUNT(*) As total_records FROM tb_rekam_medis inner join tb_pasien on tb_rekam_medis.id_pasien=tb_pasien.id_pasien");
+              $total_records = mysqli_fetch_array($result_count);
+              $total_records = $total_records['total_records'];
+                $total_no_of_pages = ceil($total_records / $total_records_per_page);
+              $second_last = $total_no_of_pages - 1; // total page minus 1
+
       $n=1;
       // $sql1= mysqli_query($koneksi,"SELECT tb_rekam_medis.tgl_rekam,tb_rekam_medis.jenis_kunjungan,tb_rekam_medis.periksa,tb_rekam_medis.diagnosa,tb_rekam_medis.tindakan,tb_dokter.nama from tb_rekam_medis inner join tb_dokter on tb_rekam_medis.NIP=tb_dokter.NIP where id_pasien='".$_GET['id_pasien']."' and jenis_kunjungan='baru'");
       // $query = mysqli_query($koneksi,"select * from tb_pendaftaran where proses = '".$_SESSION['poli']."' and keterangan = 'selesai'");
       // $query = mysqli_query($koneksi,"SELECT tb_pendaftaran.nama,tb_pendaftaran.tanggal,tb_pendaftaran.jenis_kunjungan,tb_pendaftaran.proses,tb_pendaftaran.no_cm,tb_pasien.NIK from tb_pendaftaran inner join tb_pasien on tb_pendaftaran.id_pasien=tb_pasien.id_pasien where keterangan = 'selesai'");
+      $query = mysqli_query($koneksi,"SELECT tb_rekam_medis.tgl_rekam,tb_rekam_medis.jenis_kunjungan,tb_rekam_medis.periksa,tb_rekam_medis.diagnosa,tb_rekam_medis.tindakan,tb_pasien.NIK,tb_pasien.nama from tb_rekam_medis inner join tb_pasien on tb_rekam_medis.id_pasien=tb_pasien.id_pasien ORDER BY tb_rekam_medis.tgl_rekam ASC limit $offset, $total_records_per_page");
       while ($row=mysqli_fetch_object($query))
       {
        ?>
@@ -82,29 +101,89 @@ $hitung1=mysqli_num_rows($query);
    <td><?php echo "$row->periksa"?></td>
    <td><?php echo "$row->diagnosa"?></td>
    <td><?php echo "$row->tindakan"?></td>
-<!--    <td><?php echo "Rp ".number_format($row->biaya,2,',','.');?></td> -->
-   <!-- <td><span class="label label-success"><?php echo "$row->status"?></span></td>
-   <td><span class="label label-success"><?php echo "$row->keterangan"?></span></td> -->
-   <!-- <td>
-     <form class="" action="" method="post">
-       <input type="hidden" name="id_rawat" value="<?php echo $row->id_rawat; ?>">
-       <input type="hidden" name="id_pasien" value="<?php echo $row->id_pasien; ?>">
-
-       <button name="rekam" class="btn btn-default btn-flat btn-sm" type="submit" data-toggle="tooltip" data-placement="bottom" title="Proses">
-         <i class="glyphicon glyphicon-eye-open"></i>
-       </button>
-
-       <button type="submit" class="btn btn-danger btn-flat btn-sm" name="hapus" data-toggle="tooltip" data-placement="bottom" title="Hapus">
-         <i class="glyphicon glyphicon-remove"></i>
-       </button>
-     </form>
-  </td> -->
  </tr>
       <?php
        $n= $n+1;
   }
   ?>
   </table>
+
+  <div style='padding: 10px 20px 0px; border-top: dotted 1px #CCC;'>
+<strong>Page <?php echo $page_no." of ".$total_no_of_pages; ?></strong>
+</div>
+
+<ul class="pagination">
+  <?php // if($page_no > 1){ echo "<li><a href='?page_no=1'>First Page</a></li>"; } ?>
+    
+  <li <?php if($page_no <= 1){ echo "class='disabled'"; } ?>>
+  <a <?php if($page_no > 1){ echo "href='?m=dataKunjungan&page_no=$previous_page'"; } ?>>Previous</a>
+  </li>
+
+  <?php 
+  if ($total_no_of_pages <= 10){     
+    for ($counter = 1; $counter <= $total_no_of_pages; $counter++){
+      if ($counter == $page_no) {
+       echo "<li class='active'><a>$counter</a></li>";  
+        }else{
+           echo "<li><a href='?m=dataKunjungan&page_no=$counter'>$counter</a></li>";
+        }
+        }
+  }
+  elseif($total_no_of_pages > 10){
+    
+  if($page_no <= 4) {     
+   for ($counter = 1; $counter < 8; $counter++){     
+      if ($counter == $page_no) {
+       echo "<li class='active'><a>$counter</a></li>";  
+        }else{
+           echo "<li><a href='?m=dataKunjungan&page_no=$counter'>$counter</a></li>";
+        }
+        }
+    echo "<li><a>...</a></li>";
+    echo "<li><a href='?m=dataKunjungan&page_no=$second_last'>$second_last</a></li>";
+    echo "<li><a href='?m=dataKunjungan&page_no=$total_no_of_pages'>$total_no_of_pages</a></li>";
+    }
+
+   elseif($page_no > 4 && $page_no < $total_no_of_pages - 4) {     
+    echo "<li><a href='?page_no=1'>1</a></li>";
+    echo "<li><a href='?page_no=2'>2</a></li>";
+        echo "<li><a>...</a></li>";
+        for ($counter = $page_no - $adjacents; $counter <= $page_no + $adjacents; $counter++) {     
+           if ($counter == $page_no) {
+       echo "<li class='active'><a>$counter</a></li>";  
+        }else{
+           echo "<li><a href='?m=dataKunjungan&page_no=$counterpage_no=$counter'>$counter</a></li>";
+        }                  
+       }
+       echo "<li><a>...</a></li>";
+     echo "<li><a href='?m=dataKunjungan&page_no=$second_last'>$second_last</a></li>";
+     echo "<li><a href='?m=dataKunjungan&page_no=$total_no_of_pages'>$total_no_of_pages</a></li>";      
+            }
+    
+    else {
+        echo "<li><a href='?page_no=1'>1</a></li>";
+    echo "<li><a href='?page_no=2'>2</a></li>";
+        echo "<li><a>...</a></li>";
+
+        for ($counter = $total_no_of_pages - 6; $counter <= $total_no_of_pages; $counter++) {
+          if ($counter == $page_no) {
+       echo "<li class='active'><a>$counter</a></li>";  
+        }else{
+           echo "<li><a href='?m=dataKunjungan&page_no=$counter'>$counter</a></li>";
+        }                   
+                }
+            }
+  }
+?>
+    
+  <li <?php if($page_no >= $total_no_of_pages){ echo "class='disabled'"; } ?>>
+  <a <?php if($page_no < $total_no_of_pages) { echo "href='?m=dataPasien&page_no=$next_page'"; } ?>>Next</a>
+  </li>
+    <?php if($page_no < $total_no_of_pages){
+    echo "<li><a href='?m=dataPasien&page_no=$total_no_of_pages'>Last &rsaquo;&rsaquo;</a></li>";
+    } ?>
+</ul>
+
   </div>
 
     <div class="modal fade" id="editLayanan" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">

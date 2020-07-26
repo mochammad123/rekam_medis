@@ -13,7 +13,7 @@
 <div class="pad margin no-print">
   <div class="box box-primary">
     <div class="box-header with-border">
-  <h3 class="box-title">Selamat datang di sistem rekam medis Kimia Farma Ujung Berung.</h3>
+  <h3 class="box-title">Selamat datang di sistem rekam medis Dr. Endang Suherlan, Sp.T.H.T.K.L., M.Kes.</h3>
 
   <div class="box-tools pull-right">
     <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>

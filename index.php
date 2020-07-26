@@ -20,7 +20,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12 text-center">
-            <h1>SISTEM REKAM MEDIS<br><small>Kimia Farma Ujung Berung</small></h1>
+            <h1>SISTEM REKAM MEDIS<br><small>Dr. Endang Suherlan, Sp.T.H.T.K.L., M.Kes</small></h1>
           </div>
         </div>
       </div>
