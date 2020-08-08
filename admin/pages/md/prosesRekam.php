@@ -41,6 +41,7 @@ while ($row=mysqli_fetch_object($cekpoli)) {
         </div>
         <!-- /.box-header -->
         <div class="box-body" id="list">
+        <div class="table-responsive">
           <table class="table table-bordered table-striped">
             <tr>
               <th><span class="fa fa-th-list"></span> No</th>
@@ -94,6 +95,7 @@ while ($row=mysqli_fetch_object($cekpoli)) {
   ?>
   </table>
   </div>
+  </div>
 
     <div class="modal fade" id="editLayanan" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog">
@@ -130,6 +132,7 @@ while ($row=mysqli_fetch_object($cekpoli)) {
 
   <!-- /.box-header -->
   <div class="box-body" id="selesai" style="display:none">
+  <div class="table-responsive">
     <table class="table table-bordered table-striped">
       <tr>
         <th><span class="fa fa-th-list"></span> No</th>
@@ -175,6 +178,7 @@ while ($row=mysqli_fetch_object($query))
 }
 ?>
 </table>
+</div>
 </div>
   </div>
   </div>

@@ -2,6 +2,7 @@
 include '../../../backend/koneksi.php';
 ?>
 <div id="isi_tabel">
+<div class="table-responsive">
   <table class="table table-bordered table-striped">
     <thead>
     <tr style="font-size: 12px">
@@ -60,4 +61,5 @@ $usia = $sekarang - $tgl_lahir;
 ?>
 </tbody>
 </table>
+</div>
 </div>

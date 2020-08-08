@@ -12,7 +12,7 @@ if(isset($_POST["tanggal_awal"], $_POST["tanggal_akhir"]))
 ?>
 <h6 style="text-align: right;">
 <form class="" action="" method="post">
-<a name="cetak" href="../backend/backend_cetakKunjungan.php?tgl_awal=<?php echo $tanggal_awal ?>&tgl_akhir=<?php echo $tanggal_akhir ?>" target="_blank" class="btn btn-default btn-flat btn-xs" style="size: 5px">
+<a name="cetak" href="../backend/backend_cetakKunjungan.php?tgl_awal=<?php echo $tanggal_awal ?>&tgl_akhir=<?php echo $tanggal_akhir ?>" target="_blank" class="btn btn-primary btn-flat btn-xs" style="size: 5px">
 <i class="glyphicon glyphicon-print"></i>
 cetak
 </a>
@@ -20,6 +20,7 @@ cetak
 </form>
 </h6>
 <div id="isi_tabel">
+<div class="table-responsive">
   <table class="table table-bordered table-striped">
     <thead>
     <tr style="font-size: 12px">
@@ -70,6 +71,7 @@ if(mysqli_num_rows($query) > 0)
 ?>
 </tbody>
 </table>
+</div>
 <?php
 }
 ?>

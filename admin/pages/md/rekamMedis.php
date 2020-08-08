@@ -44,6 +44,7 @@ include"../backend/koneksi.php";
           <!-- /.box-header -->
           <div class="box-body" id="isi_tabel">
             <div class="inner">
+            <div class="table-responsive">
             <table class="table table-bordered table-striped">
               <tr style="font-size: 12px">
               <th><span class="fa fa-th-list"></span> No</th>
@@ -117,7 +118,7 @@ include"../backend/koneksi.php";
     	}
      ?>
     </table>
-
+      </div>
     <div style='padding: 10px 20px 0px; border-top: dotted 1px #CCC;'>
 <strong>Page <?php echo $page_no." of ".$total_no_of_pages; ?></strong>
 </div>

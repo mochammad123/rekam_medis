@@ -174,6 +174,7 @@ while ($row=mysqli_fetch_object($hasil)) {
   <!-- /.box-header -->
 <!-- Tabel Periksa -->
   <div class="box-body" id="riwayat">
+  <div class="table-responsive">
     <table class="table table-bordered table-striped">
       <tr>
         <th><span class="fa fa-calendar"></span> Tanggal Rawat</th>
@@ -219,6 +220,7 @@ while ($row=mysqli_fetch_object($hasil)) {
        </tr>
       <?php } ?>
     </table>
+    </div>
    </div>
 
 

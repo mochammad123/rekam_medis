@@ -50,6 +50,7 @@ $hitung1=mysqli_num_rows($query);
         </div>
         <!-- /.box-header -->
         <div class="box-body" id="list">
+        <div class="table-responsive">
         <h6 style="text-align: right;">
           <i class="fa "></i> Jumlah Kunjungan : <?php echo $hitung1 ?>
          </h6>
@@ -107,7 +108,7 @@ $hitung1=mysqli_num_rows($query);
   }
   ?>
   </table>
-
+  </div>
   <div style='padding: 10px 20px 0px; border-top: dotted 1px #CCC;'>
 <strong>Page <?php echo $page_no." of ".$total_no_of_pages; ?></strong>
 </div>

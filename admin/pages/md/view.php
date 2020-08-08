@@ -1,4 +1,4 @@
-<div>
+<div class="table-responsive">
 <table class="table table-bordered table-striped">
   <tr>
     <th><span class="fa fa-th-list"></span> No</th>
