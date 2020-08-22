@@ -35,7 +35,7 @@ $hitung=mysqli_num_rows($sql);
        <th>Dokter</th>
        <th>Jenis Kunjungan</th>
        <th>Periksa</th>
-       <th>Diagnosa</th>
+       <th>Penyakit</th>
        <th>Obat</th>
      </tr>
      <?php

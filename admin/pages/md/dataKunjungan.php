@@ -32,6 +32,12 @@ $hitung1=mysqli_num_rows($query);
       </h2>
       <div class="box">
         <div class="box-header with-border">
+        <div class="box-tools">
+              <div class="input-group input-group-sm" style="width: 180px;">
+                <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                <input type="text" id="carii" name="carii" placeholder="Pencarian..." class="form-control pull-right" onkeyup="carii()">
+              </div>
+            </div>
           <h3 class="box-title">
           <form class="" action="" method="post">
             <div class="input-group input-group-sm" style="width: 180px;">
@@ -46,7 +52,6 @@ $hitung1=mysqli_num_rows($query);
             </button>
           </form>
           </h3>
-            </div>
         </div>
         <!-- /.box-header -->
         <div class="box-body" id="list">
@@ -62,8 +67,8 @@ $hitung1=mysqli_num_rows($query);
               <th><span class="fa fa-calendar"></span> Tanggal</th>
               <th><span class="fa fa-clock-o"></span> Jenis Kunjungan</th>
               <th><span class="fa fa-stethoscope"></span> Periksa</th>
-              <th><span class="fa fa-heartbeat"></span> Diagnosa</th>
-              <th><span class="fa fa-user-md"></span> Tindakan</th>
+              <th><span class="fa fa-heartbeat"></span> Penyakit</th>
+              <th><span class="fa fa-user-md"></span> Obat</th>
             </tr>
 
       <?php
@@ -247,8 +252,6 @@ function editLayanan(id){
   });
 }
 </script>
-
-
 <script>  
       $(document).ready(function(){  
            $.datepicker.setDefaults({  
@@ -281,6 +284,19 @@ function editLayanan(id){
       });
 
   
+ </script>
+<script type="text/javascript">
+ function carii() {
+  var q = $('#carii').val();
+  $.ajax({
+  type: "GET",
+  url: "pages/md/pencarianDataKunjungan.php?q="+q,
+  success: function(data){
+      var $response = $(data);
+      $('#list').html($response.filter('#list').html());
+    }
+  });
+}
  </script>
   <script type="text/javascript">
   $(document).ready(function(){

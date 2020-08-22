@@ -106,7 +106,7 @@ $hasil = mysqli_fetch_assoc($run);
       <th><span class="fa fa-bars"></span> Tanggal Rekam</th>
       <th><span class="fa fa-bars"></span> Jenis Kunjungan</th>
       <th><span class="fa fa-bars"></span> Periksa</th>
-      <th><span class="fa fa-bars"></span> Diagnosa</th>
+      <th><span class="fa fa-bars"></span> Penyakit</th>
       <th><span class="fa fa-bars"></span> Obat</th>
   </tr>
   <?php 

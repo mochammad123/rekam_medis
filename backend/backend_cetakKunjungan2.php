@@ -3,8 +3,7 @@ include "koneksi.php";
 include "backend_autentifikasi.php";
 // $id = $_GET['id_login'];
 $_SESSION['username'] = $username; 
-$tanggal_awal = $_GET['tgl_awal'];
-$tanggal_akhir = $_GET['tgl_akhir'];
+$pencari = $_GET['pencari'];
 ?>
 <html>
   <head>
@@ -71,7 +70,7 @@ $tanggal_akhir = $_GET['tgl_akhir'];
   <?php 
   // koneksi database
   $n=1;
-  $query = mysqli_query($koneksi,"SELECT tb_rekam_medis.tgl_rekam,tb_rekam_medis.jenis_kunjungan,tb_rekam_medis.periksa,tb_rekam_medis.diagnosa,tb_rekam_medis.tindakan,tb_pasien.NIK,tb_pasien.nama from tb_rekam_medis inner join tb_pasien on tb_rekam_medis.id_pasien=tb_pasien.id_pasien WHERE tgl_rekam BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY tb_rekam_medis.tgl_rekam ASC");
+  $query = mysqli_query($koneksi,"SELECT tb_rekam_medis.tgl_rekam,tb_rekam_medis.jenis_kunjungan,tb_rekam_medis.periksa,tb_rekam_medis.diagnosa,tb_rekam_medis.tindakan,tb_pasien.NIK,tb_pasien.nama from tb_rekam_medis inner join tb_pasien on tb_rekam_medis.id_pasien=tb_pasien.id_pasien WHERE diagnosa LIKE '%".$pencari."%' ORDER BY tb_rekam_medis.tgl_rekam ASC");
 //   $query = mysqli_query($koneksi,"select * from tb_pasien");
   while ($row=mysqli_fetch_object($query))
   {

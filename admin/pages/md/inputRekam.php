@@ -153,7 +153,7 @@ while ($row=mysqli_fetch_object($hasil)) {
         <th><span class="fa fa-calendar"></span> Tanggal Rawat</th>
         <th><span class="fa fa-clock-o"></span> Jenis Kunjungan</th>
         <th><span class="fa fa-stethoscope"></span> Periksa</th>
-        <th><span class="fa fa-heartbeat"></span> Diagnosa</th>
+        <th><span class="fa fa-heartbeat"></span> Penyakit</th>
         <th><span class="fa fa-user-md"></span> Obat</th>
         <th><span class="fa fa-user-md"></span> Opsi</th>
       </tr>
@@ -222,7 +222,7 @@ while ($row=mysqli_fetch_object($hasil)) {
           <th><span class="fa fa-calendar"></span> Tanggal Rawat</th>
           <th><span class="fa fa-clock-o"></span> Jenis Kunjungan</th>
           <th><span class="fa fa-stethoscope"></span> Periksa</th>
-          <th><span class="fa fa-heartbeat"></span> Diagnosa</th>
+          <th><span class="fa fa-heartbeat"></span> Penyakit</th>
           <th><span class="fa fa-user-md"></span> Obat</th>
         </tr>
 
@@ -483,7 +483,7 @@ while ($row=mysqli_fetch_object($hasil)) {
                   <textarea name="periksa" required="required" rows="3" cols="40" class="form-control" id="periksa"></textarea>
                 </div>
                 <div class="form-group">
-                  <label for="">Diagnosa</label>
+                  <label for="">Penyakit</label>
                   <textarea name="diagnosa" required="required" rows="3" cols="40" class="form-control" id="diagnosa"></textarea>
                 </div>
                 <div class="form-group">
@@ -533,8 +533,8 @@ function editRekam(id){
 $(document).ready(function(){
     $("#tombol_periksa").click(function(){
       $("#periksa").show();
-      $("#diagnosa").hide();
-      $("#tindakan").hide();
+      $("#diagnosa").show();
+      $("#tindakan").show();
       $("#riwayat").show();
       $("#rm").hide();
 

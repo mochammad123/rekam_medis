@@ -49,7 +49,6 @@ include"../backend/koneksi.php";
           <!-- /.box-header -->
           <div class="box-body scroll" id="list">
             <div class="inner">
-            <div class="table-responsive">
             <table class="table table-bordered table-striped">
               <tr>
                 <th><span class="fa fa-th-list"></span> No</th>
@@ -99,7 +98,6 @@ include"../backend/koneksi.php";
     	}
      ?>
     </table>
-    </div>
   </div>
   </div>
   <!-- /.box-body -->
@@ -139,7 +137,6 @@ include"../backend/koneksi.php";
   <!-- /.box-header -->
   <div class="box-body scroll" id="selesai" style="display:none">
     <div class="inner">
-    <div class="table-responsive">
     <table class="table table-bordered table-striped">
       <tr>
           <th><span class="fa fa-th-list"></span> No</th>
@@ -186,7 +183,6 @@ include"../backend/koneksi.php";
 }
 ?>
 </table>
-</div>
 </div>
 </div>
 <!-- /.box-body -->
@@ -281,7 +277,6 @@ function editLayanan(id){
 function munculo(tuliso) {
   $("#pendaftaran").slideDown();
   $("#id_pasieno").val(tuliso);
-  $("#nama").val(tuliso);
 }
 
 function munculo2(tuliso) {
