@@ -137,7 +137,7 @@ include"../backend/koneksi.php";
               </td>
              </tr>
              <?php
-             $n= $n+1;
+             $n=$n+1;
       }
      ?>
    </tbody>

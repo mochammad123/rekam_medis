@@ -46,6 +46,9 @@ $hitung1=mysqli_num_rows($query);
             <div class="input-group input-group-sm" style="width: 180px;">
             <h6>Tanggal Akhir</h6> <input type="date" name="tanggal_akhir" id="tanggal_akhir" class="form-control">
             </div>
+            <div class="input-group input-group-sm" style="width: 180px;">
+            <h6>Pencarian Penyakit</h6> <input type="text" name="pencarian" id="pencarian" class="form-control" placeholder="Cariii...">
+            </div>
             <br>
             <button class="btn btn-primary" name="cari" id="cari" type="button" value="cari">
           Cari
@@ -263,13 +266,14 @@ function editLayanan(id){
            });  
            $('#cari').click(function(){  
                 var tanggal_awal = $('#tanggal_awal').val();  
-                var tanggal_akhir = $('#tanggal_akhir').val();  
+                var tanggal_akhir = $('#tanggal_akhir').val();
+                var pencarian = $('#pencarian').val();  
                 if(tanggal_awal != '' && tanggal_akhir != '')  
                 {  
                      $.ajax({  
                           url:"pages/md/pencarianKunjungan.php",  
                           method:"POST",  
-                          data:{tanggal_awal:tanggal_awal, tanggal_akhir:tanggal_akhir},  
+                          data:{tanggal_awal:tanggal_awal, tanggal_akhir:tanggal_akhir, pencarian:pencarian},  
                           success:function(data)  
                           {  
                                $('#list').html(data);  

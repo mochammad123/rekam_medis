@@ -212,9 +212,9 @@ include"../backend/koneksi.php";
       $angkastring=implode($ambilangka);
       $no_cm=$angkastring;
        ?>
-      <input type="hidden" name="no_cm" value="<?php echo $no_cm ?>">
-      <input type="hidden" name="id_pasien" id="id_pasieno" value="">
-      <input type="hidden" name="nama" id="nama" value="">
+      <input type="text" name="no_cm" value="<?php echo $no_cm ?>">
+      <input type="text" name="id_pasien" id="id_pasieno" value="">
+      <input type="text" name="nama" id="nama" value="">
       <h4><b>Pendaftaran</b></h4>
       <div class="form-group row">
         <div class="col-sm-4">
@@ -256,7 +256,7 @@ include"../backend/koneksi.php";
 <script src="../js/ajax.js"></script>
 <script src="../js/bootstrap.js"></script>
 <script type="text/javascript">
-    $('button').tooltip();
+    
 </script>
 <script type="text/javascript">
 function editLayanan(id){
@@ -272,11 +272,14 @@ function editLayanan(id){
     }
   });
 }
+
+$('button').tooltip();
 </script>
 <script type="text/javascript">
 function munculo(tuliso) {
   $("#pendaftaran").slideDown();
   $("#id_pasieno").val(tuliso);
+  $("nama").val(tuliso);
 }
 
 function munculo2(tuliso) {

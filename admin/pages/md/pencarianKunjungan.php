@@ -2,17 +2,18 @@
 include '../../../backend/koneksi.php';
 ?>
 <?php 
-if(isset($_POST["tanggal_awal"], $_POST["tanggal_akhir"]))  
+if(isset($_POST["tanggal_awal"], $_POST["tanggal_akhir"], $_POST["pencarian"]))  
 { 
   $tanggal_awal = $_POST["tanggal_awal"];
   $tanggal_akhir = $_POST["tanggal_akhir"];
+  $pencarian = $_POST["pencarian"];
   $ww = $tanggal_awal&&$tanggal_akhir;
-  $query = mysqli_query($koneksi,"SELECT tb_rekam_medis.tgl_rekam,tb_rekam_medis.jenis_kunjungan,tb_rekam_medis.periksa,tb_rekam_medis.diagnosa,tb_rekam_medis.tindakan,tb_pasien.NIK,tb_pasien.nama from tb_rekam_medis inner join tb_pasien on tb_rekam_medis.id_pasien=tb_pasien.id_pasien WHERE tgl_rekam BETWEEN '".$_POST["tanggal_awal"]."' AND '".$_POST["tanggal_akhir"]."' ORDER BY tb_rekam_medis.tgl_rekam ASC");  
+  $query = mysqli_query($koneksi,"SELECT tb_rekam_medis.tgl_rekam,tb_rekam_medis.jenis_kunjungan,tb_rekam_medis.periksa,tb_rekam_medis.diagnosa,tb_rekam_medis.tindakan,tb_pasien.NIK,tb_pasien.nama from tb_rekam_medis inner join tb_pasien on tb_rekam_medis.id_pasien=tb_pasien.id_pasien WHERE diagnosa LIKE '%".$_POST["pencarian"]."%' AND tgl_rekam BETWEEN '".$_POST["tanggal_awal"]."' AND '".$_POST["tanggal_akhir"]."' ORDER BY tb_rekam_medis.tgl_rekam ASC");  
   $hitung1=mysqli_num_rows($query); 
 ?>
 <h6 style="text-align: right;">
 <form class="" action="" method="post">
-<a name="cetak" href="../backend/backend_cetakKunjungan.php?tgl_awal=<?php echo $tanggal_awal ?>&tgl_akhir=<?php echo $tanggal_akhir ?>" target="_blank" class="btn btn-primary btn-flat btn-xs" style="size: 5px">
+<a name="cetak" href="../backend/backend_cetakKunjungan.php?tgl_awal=<?php echo $tanggal_awal ?>&tgl_akhir=<?php echo $tanggal_akhir ?>&pencarian=<?php echo $pencarian ?>" target="_blank" class="btn btn-primary btn-flat btn-xs" style="size: 5px">
 <i class="glyphicon glyphicon-print"></i>
 cetak
 </a>
@@ -31,7 +32,7 @@ cetak
              <th><span class="fa fa-clock-o"></span> Jenis Kunjungan</th>
              <th><span class="fa fa-stethoscope"></span> Periksa</th>
              <th><span class="fa fa-heartbeat"></span> Penyakit</th>
-             <th><span class="fa fa-user-md"></span> Tindakan</th>
+             <th><span class="fa fa-user-md"></span> Obat</th>
     </tr>
   </thead>
   <tbody id="isi_tabel">
